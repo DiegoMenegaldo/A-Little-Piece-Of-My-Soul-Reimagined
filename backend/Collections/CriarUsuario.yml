@@ -1,0 +1,25 @@
+info:
+  name: CriarUsuario
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: localhost:8080/usuarios
+  body:
+    type: json
+    data: |-
+      {
+        "nome": "Diego Henrique",
+        "email": "diego@email.com",
+        "generoFavorito": "Post Punk",
+        "bandaFavorita": "Lebanon Hanover",
+        "senha": "Diego123!"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

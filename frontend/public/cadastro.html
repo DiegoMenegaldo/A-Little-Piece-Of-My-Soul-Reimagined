@@ -112,6 +112,7 @@
                         <span>Já possui um cadastro?</span>
                         <a href="login.html">Clique aqui para entrar!</a>
                     </div>
+                    <div id="div_mensagemSucesso"></div>
                 </div>
             </div>
         </div>
@@ -177,19 +178,17 @@
     }
 
     // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
+    fetch("http://localhost:8080/usuarios", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeVar,
-        emailServer: emailVar,
-        generoServer: generoVar,
-        bandaServer: bandaVar,
-        senhaServer: senhaVar,
+        nome: nomeVar,
+        email: emailVar,
+        generoFavorito: generoVar,
+        bandaFavorita: bandaVar,
+        senha: senhaVar,
       }),
     })
       .then(function (resposta) {
@@ -197,9 +196,14 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-            window.location = "login.html";
+            div_mensagemSucesso.innerHTML = `Cadastro realizado! Redirecionando para o login ...`
+            
+            setTimeout(function () {
+                window.location = "login.html";
+            }, 3000)
         } else {
           console.log(resposta)
+          div_mensagemSucesso.innerHTML = `Falha ao realizar o cadastro, tente novamente.`
         }
       })
       .catch(function (resposta) {
