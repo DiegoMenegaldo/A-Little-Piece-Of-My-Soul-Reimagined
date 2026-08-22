@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Little Piece Of My Soul - Cadastro</title>
+    <script src="./js/sessao.js"></script>
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="icon" href="./assets/logo-sem-fundo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caudex:ital,wght@0,400;0,700;1,400;1,700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">  <!-- Fontes utilizadas -->
+</head>
+
+
+<body>
+  <div class="header">
+        <div class="container">
+            <ul class="navbar">
+                <li>
+                    <a href="index.html"><img src="./assets/logo-sem-fundo.png" alt="Voltar Para a Página Inicial"></a>
+                </li>
+                <li>
+                    <a href="sobre-mim.html">Sobre Mim</a>
+                </li>
+                <li>
+                    <a href="subcultura.html">A Subcultura</a>
+                </li>
+                <li>
+                    <a href="bandas.html">Bandas</a>
+                </li>
+                <li>
+                    <a href="locais.html">Locais em SP</a>
+                </li>
+                <li>
+                    <a href="cadastro.html">Faça Seu Cadastro!</a>
+                </li>
+                <li>
+                    <a href="login.html">Login</a>
+                </li>
+                <li>
+                    <a href="quiz.html">Quiz</a>
+                </li>
+                <li>
+                    <a href="dashboard.html">Dashboard</a>
+                </li>
+                <li>
+                    <a onclick="limparSessao()" style="cursor: pointer;">Logoff</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+   </div>
+
+  <div class="cadastro">
+        <div class="container">
+            <div class="card card-cadastro">
+                <h2>Cadastre-se nesta experiência!</h2>
+                <div class="formulario">
+                    <div class="campo">
+                        <span>Nome Completo:</span>
+                        <input type="text" id="input_nome">
+                    </div>
+                    <div class="campo">
+                        <span>Email:</span>
+                        <input type="text" id="input_email">
+                    </div>
+                    <div class="campo">
+                        <span>Gênero Gótico que mais te interessou:</span>
+                        <select id="select_genero" class="select_genero">
+                                <option selected disabled value="">Selecione um Gênero</option>
+                                <option>Gothic Rock</option>
+                                <option>Post-Punk</option>
+                                <option>Darkwave</option>
+                                <option>Coldwave</option>
+                                <option>Industrial</option>
+                                <option>Deathrock</option>
+                                <option>EBM (Electronic Body Music)</option>
+                                <option>Gothic Metal / Love Metal</option>
+                            </select>
+                    </div>
+                    <div class="campo">
+                        <span>Banda Gótica que mais te interessou:</span>
+                        <select id="select_bandas" class="select_bandas">
+                            <option selected disabled value="">Selecione uma Banda</option>
+                            <option>Bauhaus</option>
+                            <option>The Cure</option>
+                            <option>Siouxsie and the Banshees</option>
+                            <option>The Sisters of Mercy</option>
+                            <option>Christian Death</option>
+                            <option>Lebanon Hanover</option>
+                            <option>She Past Away</option>
+                            <option>Pink Turns Blue</option>
+                            <option>Twin Tribes</option>
+                            <option>Ultra Sunn</option>
+                            <option>Qual</option>
+                            <option>London After Midnight</option>
+                            <option>She Wants Revenge</option>
+                            <option>His Infernal Majesty (HIM)</option>
+                        </select>
+                    </div>
+                    <div class="campo">
+                        <span>Senha:</span>
+                        <input type="password" id="input_senha">
+                    </div>
+                    <div class="campo">
+                        <span>Confirme sua senha:</span>
+                        <input type="password" id="input_senha_confirmacao">
+                    </div>
+                    <button class="botao-cadastro" onclick="cadastrar()">‿̩͙⊱༒︎༻♱Cadastrar♱༺༒︎⊰‿̩͙</button>
+                    <div class="possuiConta">
+                        <span>Já possui um cadastro?</span>
+                        <a href="login.html">Clique aqui para entrar!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div>A Little Piece of My Soul — criado por Diego Henrique de Novais Menegaldo 🦇🍷🖤</div>
+    </div>
+</body>
+</html>
+<script>
+  function cadastrar() {
+    var nomeVar = input_nome.value;
+    var emailVar = input_email.value;
+    var senhaVar = input_senha.value;
+    var generoVar = select_genero.value;
+    var bandaVar = select_bandas.value;
+    var confirmacaoSenhaVar = input_senha_confirmacao.value;
+    var nomeTamanho = nomeVar.length;
+    var senhaTamanho = senhaVar.length;
+    var temArroba = '@';
+    var temPonto = '.';
+    var senhaConfirmacaoTamanho = confirmacaoSenhaVar.length;
+
+    // Verificando se há algum campo em branco
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      generoVar == "" ||
+      bandaVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == ""
+    ) {
+      alert(`Todos os campos devem ser preenchidos para prosseguir!`)
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+    if(nomeTamanho <= 1){
+      alert(`O nome deve ter mais de 1 caractere`)
+      return;
+    }
+
+    if(emailVar.includes(temArroba) == false || emailVar.includes(temPonto) == false){
+      alert(`Verifique se o email tem @ ou .`);
+      return;
+    }
+
+    if (senhaTamanho <= 6){
+      alert(`A senha deve ter mais de 6 caracteres`)
+      return;
+    }
+
+     if (senhaConfirmacaoTamanho <= 6){
+      alert(`A confirmação da senha tem que ter mais de 6 caracteres`)
+      return;
+    }
+
+    if (senhaVar != confirmacaoSenhaVar){
+        alert(`As senhas devem ser iguais`)
+        return;
+    }
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        generoServer: generoVar,
+        bandaServer: bandaVar,
+        senhaServer: senhaVar,
+      }),
+    })
+      .then(function (resposta) {
+        
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+            window.location = "login.html";
+        } else {
+          console.log(resposta)
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        // finalizarAguardar();
+      });
+
+    return false;
+  }
+
+  function sumirMensagem() {
+    // cardErro.style.display = "none";
+  }
+</script>

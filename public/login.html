@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Little Piece Of My Soul - Login</title>
+    <link rel="stylesheet" href="./style/style.css">
+    <script src="./js/sessao.js"></script>
+    <link rel="icon" href="./assets/logo-sem-fundo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caudex:ital,wght@0,400;0,700;1,400;1,700&family=Cinzel+Decorative:wght@400;700;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <ul class="navbar">
+                <li>
+                    <a href="index.html"><img src="./assets/logo-sem-fundo.png" alt="Voltar Para a Página Inicial"></a>
+                </li>
+                <li>
+                    <a href="sobre-mim.html">Sobre Mim</a>
+                </li>
+                <li>
+                    <a href="subcultura.html">A Subcultura</a>
+                </li>
+                <li>
+                    <a href="bandas.html">Bandas</a>
+                </li>
+                <li>
+                    <a href="locais.html">Locais em SP</a>
+                </li>
+                <li>
+                    <a href="cadastro.html">Faça Seu Cadastro!</a>
+                </li>
+                <li>
+                    <a href="login.html">Login</a>
+                </li>
+                <li>
+                    <a href="quiz.html">Quiz</a>
+                </li>
+                <li>
+                    <a href="dashboard.html">Dashboard</a>
+                </li>
+                <li>
+                    <a onclick="limparSessao()" style="cursor: pointer;">Logoff</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="login">
+            <div class="container">
+                <div class="card-login">
+                    <div class="formulario">
+                        <h2>Fico feliz que tenha voltado 🍷</h2>
+                        <div class="campo">
+                            <span>Email</span>
+                            <input type="text" id="input_email">
+                        </div>
+                        <div class="campo">
+                            <span>Senha:</span>
+                            <input type="password" id="input_senha">
+                        </div>
+                        <button class="botao-login" onclick="entrar()">‿̩͙⊱༒︎༻♱Entrar♱༺༒︎⊰‿̩͙</button>
+                        <div class="possuiConta">
+                            <span>Não possui cadastro?</span>
+                            <a href="cadastro.html">Clique aqui para se cadastrar</a>
+                        </div>
+                    </div>
+                    <div id="mensagem_erro"></div>
+                </div>
+            </div>
+        </div>
+    <div class="footer">
+        <div>A Little Piece of My Soul — criado por Diego Henrique de Novais Menegaldo 🦇🍷🖤</div>
+    </div>
+</body>
+</html>
+<script>
+    function entrar() {
+        var emailVar = input_email.value;
+        var senhaVar = input_senha.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            alert(`Verifique os campos vazios`)
+            return false;
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json[0].email;
+                    sessionStorage.NOME_USUARIO = json[0].nomeCompleto;
+                    sessionStorage.ID_USUARIO = json[0].idCadastro;
+                    setTimeout(function () {
+                        window.location.href = "quiz.html";
+                    }, 1000); 
+
+                });
+
+            } else {
+                alert(`Login inválido, tente novamente`)
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+</script>
