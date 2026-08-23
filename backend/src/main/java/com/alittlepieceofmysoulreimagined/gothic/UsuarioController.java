@@ -5,6 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/usuarios")
@@ -29,15 +31,22 @@ public class UsuarioController {
         if(usuario.getBandaFavorita() == null || usuario.getBandaFavorita().isBlank()){
             return ResponseEntity.status(400).body("Banda gótica favorita inválida.");
         }
+        if(usuario.getDtNascimento() == null){
+            return ResponseEntity.status(400).body("Data de nascimento inválida.");
+        }
+        if(usuario.getDtNascimento().isAfter(LocalDate.now())){
+            return ResponseEntity.status(400).body("Data de nascimento não pode ser no futuro");
+        }
 
         String sql = """
-                INSERT INTO Cadastro (nomeCompleto, email, generoFavorito, bandaFavorita, senha) VALUES 
-                (?,?,?,?,?);""";
+                INSERT INTO Cadastro (nomeCompleto, email, dtNascimento, generoFavorito, bandaFavorita, senha) VALUES 
+                (?,?,?,?,?,?);""";
 
         jdbcTemplate.update(
             sql,
                 usuario.getNome(),
                 usuario.getEmail(),
+                usuario.getDtNascimento(),
                 usuario.getGeneroFavorito(),
                 usuario.getBandaFavorita(),
                 usuario.getSenha()

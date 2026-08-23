@@ -1,5 +1,7 @@
 package com.alittlepieceofmysoulreimagined.gothic;
 
+import java.time.LocalDate;
+
 public class Usuario {
     private Integer id;
     private String nome;
@@ -7,25 +9,28 @@ public class Usuario {
     private String generoFavorito;
     private String bandaFavorita;
     private String senha;
+    private LocalDate dtNascimento;
 
     public Usuario() {
     }
 
-    public Usuario(Integer id, String nome, String email, String generoFavorito, String bandaFavorita, String senha) {
+    public Usuario(Integer id, String nome, String email, String generoFavorito, String bandaFavorita, String senha, LocalDate dtNascimento) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.generoFavorito = generoFavorito;
         this.bandaFavorita = bandaFavorita;
         this.senha = senha;
+        this.dtNascimento = dtNascimento;
     }
 
-    public Usuario(String nome, String email, String generoFavorito, String bandaFavorita, String senha) {
+    public Usuario(String nome, String email, String generoFavorito, String bandaFavorita, String senha, LocalDate dtNascimento) {
         this.nome = nome;
         this.email = email;
         this.generoFavorito = generoFavorito;
         this.bandaFavorita = bandaFavorita;
         this.senha = senha;
+        this.dtNascimento = dtNascimento;
     }
 
     public Integer getId() {
@@ -74,5 +79,13 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public LocalDate getDtNascimento() {
+        return dtNascimento;
+    }
+
+    public void setDtNascimento(LocalDate dtNascimento) {
+        this.dtNascimento = dtNascimento;
     }
 }

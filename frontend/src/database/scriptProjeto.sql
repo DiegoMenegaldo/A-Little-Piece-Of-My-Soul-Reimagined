@@ -2,6 +2,7 @@ CREATE TABLE Cadastro(
                          idCadastro INT PRIMARY KEY AUTO_INCREMENT,
                          nomeCompleto VARCHAR(100) NOT NULL,
                          email VARCHAR(100) UNIQUE NOT NULL,
+                         dtNascimento DATE NOT NULL,
                          generoFavorito VARCHAR(45) NOT NULL,
                          bandaFavorita VARCHAR(45) NOT NULL,
                          senha VARCHAR(100) NOT NULL

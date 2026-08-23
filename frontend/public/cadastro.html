@@ -66,6 +66,10 @@
                         <input type="text" id="input_email">
                     </div>
                     <div class="campo">
+                        <span>Data de Nascimento:</span>
+                        <input type="date" id="input_dtNascimento">
+                    </div>
+                    <div class="campo">
                         <span>Gênero Gótico que mais te interessou:</span>
                         <select id="select_genero" class="select_genero">
                                 <option selected disabled value="">Selecione um Gênero</option>
@@ -136,6 +140,7 @@
     var temArroba = '@';
     var temPonto = '.';
     var senhaConfirmacaoTamanho = confirmacaoSenhaVar.length;
+    var dtNascimentoVar = input_dtNascimento.value;
     var erro = false;
 
     // Verificando se há algum campo em branco
@@ -159,6 +164,18 @@
     if(emailVar.includes(temArroba) == false || emailVar.includes(temPonto) == false){
       div_mensagemSucesso.innerHTML += `Verifique se o email tem @ ou .<br>`
       erro = true
+    }
+
+    if(dtNascimentoVar == ""){
+        div_mensagemSucesso.innerHTML += `A data de nascimento deve ser preenchida.<br>`
+        erro = true
+    } else{
+        var dataAtual = new Date()
+        var dataInformada = new Date(dtNascimentoVar)
+        if(dataInformada > dataAtual){
+            div_mensagemSucesso.innerHTML += `A data informada não pode ser no futuro.<br>`
+            erro = true
+        }
     }
 
     if (senhaTamanho <= 6){
@@ -189,6 +206,7 @@
       body: JSON.stringify({
         nome: nomeVar,
         email: emailVar,
+        dtNascimento: dtNascimentoVar,
         generoFavorito: generoVar,
         bandaFavorita: bandaVar,
         senha: senhaVar,
