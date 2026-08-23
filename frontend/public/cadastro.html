@@ -127,7 +127,7 @@
 
                 bandas.forEach(banda => {
                     var option = document.createElement("option")
-                    option.value = banda.nome
+                    option.value = banda.idBanda
                     option.textContent = banda.nome
                     selectBandas.appendChild(option)  
                 });
@@ -216,7 +216,7 @@
                 email: emailVar,
                 dtNascimento: dtNascimentoVar,
                 generoFavorito: generoVar,
-                bandaFavorita: bandaVar,
+                fkBanda: bandaVar,
                 senha: senhaVar,
             }),
         })

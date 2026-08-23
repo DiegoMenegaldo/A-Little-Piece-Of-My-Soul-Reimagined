@@ -4,31 +4,31 @@ import java.time.LocalDate;
 
 public class Usuario {
     private Integer id;
+    private Integer fkBanda;
     private String nome;
     private String email;
     private String generoFavorito;
-    private String bandaFavorita;
     private String senha;
     private LocalDate dtNascimento;
 
     public Usuario() {
     }
 
-    public Usuario(Integer id, String nome, String email, String generoFavorito, String bandaFavorita, String senha, LocalDate dtNascimento) {
-        this.id = id;
+    public Usuario(Integer fkBanda, String nome, String email, String generoFavorito, String senha, LocalDate dtNascimento) {
+        this.fkBanda = fkBanda;
         this.nome = nome;
         this.email = email;
         this.generoFavorito = generoFavorito;
-        this.bandaFavorita = bandaFavorita;
         this.senha = senha;
         this.dtNascimento = dtNascimento;
     }
 
-    public Usuario(String nome, String email, String generoFavorito, String bandaFavorita, String senha, LocalDate dtNascimento) {
+    public Usuario(Integer id, Integer fkBanda, String nome, String email, String generoFavorito, String senha, LocalDate dtNascimento) {
+        this.id = id;
+        this.fkBanda = fkBanda;
         this.nome = nome;
         this.email = email;
         this.generoFavorito = generoFavorito;
-        this.bandaFavorita = bandaFavorita;
         this.senha = senha;
         this.dtNascimento = dtNascimento;
     }
@@ -39,6 +39,14 @@ public class Usuario {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getFkBanda() {
+        return fkBanda;
+    }
+
+    public void setFkBanda(Integer fkBanda) {
+        this.fkBanda = fkBanda;
     }
 
     public String getNome() {
@@ -63,14 +71,6 @@ public class Usuario {
 
     public void setGeneroFavorito(String generoFavorito) {
         this.generoFavorito = generoFavorito;
-    }
-
-    public String getBandaFavorita() {
-        return bandaFavorita;
-    }
-
-    public void setBandaFavorita(String bandaFavorita) {
-        this.bandaFavorita = bandaFavorita;
     }
 
     public String getSenha() {
