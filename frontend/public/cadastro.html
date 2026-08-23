@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,12 +10,14 @@
     <link rel="icon" href="./assets/logo-sem-fundo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caudex:ital,wght@0,400;0,700;1,400;1,700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">  <!-- Fontes utilizadas -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caudex:ital,wght@0,400;0,700;1,400;1,700&family=Cinzel+Decorative:wght@400;700;900&display=swap"
+        rel="stylesheet"> <!-- Fontes utilizadas -->
 </head>
 
 
 <body>
-  <div class="header">
+    <div class="header">
         <div class="container">
             <ul class="navbar">
                 <li>
@@ -50,9 +53,9 @@
             </ul>
         </div>
     </div>
-   </div>
+    </div>
 
-  <div class="cadastro">
+    <div class="cadastro">
         <div class="container">
             <div class="card card-cadastro">
                 <h2>Cadastre-se nesta experiência!</h2>
@@ -72,35 +75,21 @@
                     <div class="campo">
                         <span>Gênero Gótico que mais te interessou:</span>
                         <select id="select_genero" class="select_genero">
-                                <option selected disabled value="">Selecione um Gênero</option>
-                                <option>Gothic Rock</option>
-                                <option>Post-Punk</option>
-                                <option>Darkwave</option>
-                                <option>Coldwave</option>
-                                <option>Industrial</option>
-                                <option>Deathrock</option>
-                                <option>EBM (Electronic Body Music)</option>
-                                <option>Gothic Metal / Love Metal</option>
-                            </select>
+                            <option selected disabled value="">Selecione um Gênero</option>
+                            <option>Gothic Rock</option>
+                            <option>Post-Punk</option>
+                            <option>Darkwave</option>
+                            <option>Coldwave</option>
+                            <option>Industrial</option>
+                            <option>Deathrock</option>
+                            <option>EBM (Electronic Body Music)</option>
+                            <option>Gothic Metal / Love Metal</option>
+                        </select>
                     </div>
                     <div class="campo">
                         <span>Banda Gótica que mais te interessou:</span>
                         <select id="select_bandas" class="select_bandas">
                             <option selected disabled value="">Selecione uma Banda</option>
-                            <option>Bauhaus</option>
-                            <option>The Cure</option>
-                            <option>Siouxsie and the Banshees</option>
-                            <option>The Sisters of Mercy</option>
-                            <option>Christian Death</option>
-                            <option>Lebanon Hanover</option>
-                            <option>She Past Away</option>
-                            <option>Pink Turns Blue</option>
-                            <option>Twin Tribes</option>
-                            <option>Ultra Sunn</option>
-                            <option>Qual</option>
-                            <option>London After Midnight</option>
-                            <option>She Wants Revenge</option>
-                            <option>His Infernal Majesty (HIM)</option>
                         </select>
                     </div>
                     <div class="campo">
@@ -126,112 +115,131 @@
         <div>A Little Piece of My Soul — criado por Diego Henrique de Novais Menegaldo 🦇🍷🖤</div>
     </div>
 </body>
+
 </html>
 <script>
-  function cadastrar() {
-    var nomeVar = input_nome.value;
-    var emailVar = input_email.value;
-    var senhaVar = input_senha.value;
-    var generoVar = select_genero.value;
-    var bandaVar = select_bandas.value;
-    var confirmacaoSenhaVar = input_senha_confirmacao.value;
-    var nomeTamanho = nomeVar.length;
-    var senhaTamanho = senhaVar.length;
-    var temArroba = '@';
-    var temPonto = '.';
-    var senhaConfirmacaoTamanho = confirmacaoSenhaVar.length;
-    var dtNascimentoVar = input_dtNascimento.value;
-    var erro = false;
 
-    // Verificando se há algum campo em branco
-    if (
-      nomeVar == "" ||
-      emailVar == "" ||
-      generoVar == "" ||
-      bandaVar == "" ||
-      senhaVar == "" ||
-      confirmacaoSenhaVar == ""
-    ) {
-      div_mensagemSucesso.innerHTML = `Todos os campos devem ser preenchidos para prosseguir!<br>`
-      erro = true
+    function listarBandas(){
+        fetch("http://localhost:8080/bandas")
+            .then(resposta => resposta.json())
+            .then(bandas =>{
+                var selectBandas = document.getElementById("select_bandas")
+
+                bandas.forEach(banda => {
+                    var option = document.createElement("option")
+                    option.value = banda.nome
+                    option.textContent = banda.nome
+                    selectBandas.appendChild(option)  
+                });
+            })
     }
 
-    if(nomeTamanho <= 1){
-      div_mensagemSucesso.innerHTML += `O nome deve ter mais de 1 caractere.<br>`
-      erro = true
-    }
+    window.onload(listarBandas())
 
-    if(emailVar.includes(temArroba) == false || emailVar.includes(temPonto) == false){
-      div_mensagemSucesso.innerHTML += `Verifique se o email tem @ ou .<br>`
-      erro = true
-    }
+    function cadastrar() {
+        var nomeVar = input_nome.value;
+        var emailVar = input_email.value;
+        var senhaVar = input_senha.value;
+        var generoVar = select_genero.value;
+        var bandaVar = select_bandas.value;
+        var confirmacaoSenhaVar = input_senha_confirmacao.value;
+        var nomeTamanho = nomeVar.length;
+        var senhaTamanho = senhaVar.length;
+        var temArroba = '@';
+        var temPonto = '.';
+        var senhaConfirmacaoTamanho = confirmacaoSenhaVar.length;
+        var dtNascimentoVar = input_dtNascimento.value;
+        var erro = false;
 
-    if(dtNascimentoVar == ""){
-        div_mensagemSucesso.innerHTML += `A data de nascimento deve ser preenchida.<br>`
-        erro = true
-    } else{
-        var dataAtual = new Date()
-        var dataInformada = new Date(dtNascimentoVar)
-        if(dataInformada > dataAtual){
-            div_mensagemSucesso.innerHTML += `A data informada não pode ser no futuro.<br>`
+        // Verificando se há algum campo em branco
+        if (
+            nomeVar == "" ||
+            emailVar == "" ||
+            generoVar == "" ||
+            bandaVar == "" ||
+            senhaVar == "" ||
+            confirmacaoSenhaVar == ""
+        ) {
+            div_mensagemSucesso.innerHTML = `Todos os campos devem ser preenchidos para prosseguir!<br>`
             erro = true
         }
-    }
 
-    if (senhaTamanho <= 6){
-      div_mensagemSucesso.innerHTML += `A senha deve ter mais de 6 caracteres.<br>`
-      erro = true
-    }
+        if (nomeTamanho <= 1) {
+            div_mensagemSucesso.innerHTML += `O nome deve ter mais de 1 caractere.<br>`
+            erro = true
+        }
 
-     if (senhaConfirmacaoTamanho <= 6){
-      div_mensagemSucesso.innerHTML += `A confirmação da senha tem que ter mais de 6 caracteres.`
-      erro = true
-    }
+        if (emailVar.includes(temArroba) == false || emailVar.includes(temPonto) == false) {
+            div_mensagemSucesso.innerHTML += `Verifique se o email tem @ ou .<br>`
+            erro = true
+        }
 
-    if (senhaVar != confirmacaoSenhaVar){
-        div_mensagemSucesso.innerHTML += `As senhas devem ser iguais.<br>`
-        erro = true
-    }
+        if (dtNascimentoVar == "") {
+            div_mensagemSucesso.innerHTML += `A data de nascimento deve ser preenchida.<br>`
+            erro = true
+        } else {
+            var dataAtual = new Date()
+            var dataInformada = new Date(dtNascimentoVar)
+            if (dataInformada > dataAtual) {
+                div_mensagemSucesso.innerHTML += `A data informada não pode ser no futuro.<br>`
+                erro = true
+            }
+        }
 
-    if(erro){
+        if (senhaTamanho <= 6) {
+            div_mensagemSucesso.innerHTML += `A senha deve ter mais de 6 caracteres.<br>`
+            erro = true
+        }
+
+        if (senhaConfirmacaoTamanho <= 6) {
+            div_mensagemSucesso.innerHTML += `A confirmação da senha tem que ter mais de 6 caracteres.`
+            erro = true
+        }
+
+        if (senhaVar != confirmacaoSenhaVar) {
+            div_mensagemSucesso.innerHTML += `As senhas devem ser iguais.<br>`
+            erro = true
+        }
+
+        if (erro) {
+            return false;
+        }
+
+
+        fetch("http://localhost:8080/usuarios", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                nome: nomeVar,
+                email: emailVar,
+                dtNascimento: dtNascimentoVar,
+                generoFavorito: generoVar,
+                bandaFavorita: bandaVar,
+                senha: senhaVar,
+            }),
+        })
+            .then(function (resposta) {
+
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    div_mensagemSucesso.innerHTML = `Cadastro realizado! Redirecionando para o login ...`
+
+                    setTimeout(function () {
+                        window.location = "login.html";
+                    }, 3000)
+                } else {
+                    console.log(resposta)
+                    div_mensagemSucesso.innerHTML = `Falha ao realizar o cadastro, tente novamente.`
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                // finalizarAguardar();
+            });
+
         return false;
     }
-
-    
-    fetch("http://localhost:8080/usuarios", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        nome: nomeVar,
-        email: emailVar,
-        dtNascimento: dtNascimentoVar,
-        generoFavorito: generoVar,
-        bandaFavorita: bandaVar,
-        senha: senhaVar,
-      }),
-    })
-      .then(function (resposta) {
-        
-        console.log("resposta: ", resposta);
-
-        if (resposta.ok) {
-            div_mensagemSucesso.innerHTML = `Cadastro realizado! Redirecionando para o login ...`
-            
-            setTimeout(function () {
-                window.location = "login.html";
-            }, 3000)
-        } else {
-          console.log(resposta)
-          div_mensagemSucesso.innerHTML = `Falha ao realizar o cadastro, tente novamente.`
-        }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        // finalizarAguardar();
-      });
-
-    return false;
-  }
 </script>

@@ -53,4 +53,14 @@ public class UsuarioController {
         );
         return ResponseEntity.status(201).build();
     }
+
+    @GetMapping
+    public ResponseEntity<String> autenticarUsuario(@RequestBody Usuario usuario){
+        String sql = """
+                SELECT idCadastro, nomeCompleto, email, dtNascimento, generoFavorito, bandaFavorita as IdentificacaoCadastro FROM Cadastro 
+                WHERE email = ? AND senha = ?;
+                """;
+        
+        return ResponseEntity.status(200).body("Autenticação bem sucedida!");
+    }
 }

@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7e5b9921-d631-4510-9537-5be0e87dbb56" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/alittlepieceofmysoulreimagined/gothic/Banda.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/alittlepieceofmysoulreimagined/gothic/BandaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/alittlepieceofmysoulreimagined/gothic/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alittlepieceofmysoulreimagined/gothic/Usuario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/alittlepieceofmysoulreimagined/gothic/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/alittlepieceofmysoulreimagined/gothic/UsuarioController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/alittlepieceofmysoulreimagined/gothic/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/alittlepieceofmysoulreimagined/gothic/Usuario.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/alittlepieceofmysoulreimagined/gothic/UsuarioController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/alittlepieceofmysoulreimagined/gothic/UsuarioController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/schema.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/public/cadastro.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/public/cadastro.html" afterDir="false" />
@@ -66,6 +66,11 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.alittlepieceofmysoulreimagined.gothic" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="GothicApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
