@@ -1,20 +1,16 @@
 info:
-  name: CriarUsuario
+  name: TestarLogin
   type: http
-  seq: 1
+  seq: 3
 
 http:
   method: POST
-  url: localhost:8080/usuarios
+  url: localhost:8080/usuarios/autenticar
   body:
     type: json
     data: |-
       {
-        "nome": "Diego Henrique",
-        "fkBanda": "2",
         "email": "diego@email.com",
-        "dtNascimento": "2007-02-28",
-        "generoFavorito": "Darkwave",
         "senha": "Diego123!"
       }
   auth: inherit

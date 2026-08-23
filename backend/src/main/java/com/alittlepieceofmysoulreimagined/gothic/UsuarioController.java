@@ -2,6 +2,7 @@ package com.alittlepieceofmysoulreimagined.gothic;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
@@ -54,13 +55,30 @@ public class UsuarioController {
         return ResponseEntity.status(201).build();
     }
 
-    @GetMapping
-    public ResponseEntity<String> autenticarUsuario(@RequestBody Usuario usuario){
+    @PostMapping("/autenticar")
+    public ResponseEntity<?> autenticarUsuario(@RequestBody Usuario usuario){
         String sql = """
-                SELECT idCadastro, fkBanda, nomeCompleto, email, dtNascimento, generoFavorito as IdentificacaoCadastro FROM Cadastro 
+                SELECT idCadastro AS id, 
+                fkBanda, 
+                nomeCompleto AS nome,
+                email, 
+                dtNascimento, 
+                generoFavorito  
+                FROM Cadastro 
                 WHERE email = ? AND senha = ?;
                 """;
-        
-        return ResponseEntity.status(200).body("Autenticação bem sucedida!");
+
+        try{
+            Usuario usuarioAutenticado = jdbcTemplate.queryForObject(
+                    sql,
+                    new BeanPropertyRowMapper<>(Usuario.class),
+                    usuario.getEmail(),
+                    usuario.getSenha());
+                return ResponseEntity.status(200).body(usuarioAutenticado);
+        } catch(Exception e){
+            return ResponseEntity.status(404).body("Email ou senha inválidos.");
+        }
+
+
     }
 }
