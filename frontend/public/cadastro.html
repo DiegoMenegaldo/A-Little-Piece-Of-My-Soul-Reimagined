@@ -108,11 +108,11 @@
                         <input type="password" id="input_senha_confirmacao">
                     </div>
                     <button class="botao-cadastro" onclick="cadastrar()">‿̩͙⊱༒︎༻♱Cadastrar♱༺༒︎⊰‿̩͙</button>
+                    <div id="div_mensagemSucesso"></div>
                     <div class="possuiConta">
                         <span>Já possui um cadastro?</span>
                         <a href="login.html">Clique aqui para entrar!</a>
                     </div>
-                    <div id="div_mensagemSucesso"></div>
                 </div>
             </div>
         </div>
@@ -136,6 +136,7 @@
     var temArroba = '@';
     var temPonto = '.';
     var senhaConfirmacaoTamanho = confirmacaoSenhaVar.length;
+    var erro = false;
 
     // Verificando se há algum campo em branco
     if (
@@ -146,38 +147,40 @@
       senhaVar == "" ||
       confirmacaoSenhaVar == ""
     ) {
-      alert(`Todos os campos devem ser preenchidos para prosseguir!`)
-      return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
+      div_mensagemSucesso.innerHTML = `Todos os campos devem ser preenchidos para prosseguir!<br>`
+      erro = true
     }
 
     if(nomeTamanho <= 1){
-      alert(`O nome deve ter mais de 1 caractere`)
-      return;
+      div_mensagemSucesso.innerHTML += `O nome deve ter mais de 1 caractere.<br>`
+      erro = true
     }
 
     if(emailVar.includes(temArroba) == false || emailVar.includes(temPonto) == false){
-      alert(`Verifique se o email tem @ ou .`);
-      return;
+      div_mensagemSucesso.innerHTML += `Verifique se o email tem @ ou .<br>`
+      erro = true
     }
 
     if (senhaTamanho <= 6){
-      alert(`A senha deve ter mais de 6 caracteres`)
-      return;
+      div_mensagemSucesso.innerHTML += `A senha deve ter mais de 6 caracteres.<br>`
+      erro = true
     }
 
      if (senhaConfirmacaoTamanho <= 6){
-      alert(`A confirmação da senha tem que ter mais de 6 caracteres`)
-      return;
+      div_mensagemSucesso.innerHTML += `A confirmação da senha tem que ter mais de 6 caracteres.`
+      erro = true
     }
 
     if (senhaVar != confirmacaoSenhaVar){
-        alert(`As senhas devem ser iguais`)
-        return;
+        div_mensagemSucesso.innerHTML += `As senhas devem ser iguais.<br>`
+        erro = true
     }
 
-    // Enviando o valor da nova input
+    if(erro){
+        return false;
+    }
+
+    
     fetch("http://localhost:8080/usuarios", {
       method: "POST",
       headers: {
@@ -212,9 +215,5 @@
       });
 
     return false;
-  }
-
-  function sumirMensagem() {
-    // cardErro.style.display = "none";
   }
 </script>

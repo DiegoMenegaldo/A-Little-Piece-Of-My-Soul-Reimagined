@@ -13,7 +13,23 @@ public class UsuarioController {
     private JdbcTemplate jdbcTemplate;
 
     @PostMapping
-    public ResponseEntity<Void> cadastrarUsuario(@RequestBody Usuario usuario){
+    public ResponseEntity<String> cadastrarUsuario(@RequestBody Usuario usuario){
+        if(usuario.getNome() == null || usuario.getNome().isBlank()){
+            return ResponseEntity.status(400).body("Nome inválido.");
+        }
+        if(usuario.getEmail() == null || usuario.getEmail().isBlank()){
+            return ResponseEntity.status(400).body("Email inválido.");
+        }
+        if(usuario.getSenha() == null || usuario.getSenha().isBlank()){
+            return ResponseEntity.status(400).body("Senha inválida.");
+        }
+        if(usuario.getGeneroFavorito() == null || usuario.getGeneroFavorito().isBlank()){
+            return ResponseEntity.status(400).body("Gênero gótico favorito inválido.");
+        }
+        if(usuario.getBandaFavorita() == null || usuario.getBandaFavorita().isBlank()){
+            return ResponseEntity.status(400).body("Banda gótica favorita inválida.");
+        }
+
         String sql = """
                 INSERT INTO Cadastro (nomeCompleto, email, generoFavorito, bandaFavorita, senha) VALUES 
                 (?,?,?,?,?);""";
