@@ -15,7 +15,7 @@
         rel="stylesheet"> <!-- Fontes utilizadas -->
 </head>
 
-<body onload="validarSessao()">
+<body>
     <div class="header">
         <div class="container">
             <ul class="navbar">
@@ -54,7 +54,7 @@
     </div>
 
     <div class="introducaoQuiz">
-        <h1>Olá,<span id="b_usuario">usuário</span>! Qual banda gótica mais te representa?</h1>
+        <h1>Olá,<span id="nomeUsuario">usuário</span>! Qual banda gótica mais te representa?</h1>
         <p>Responda as perguntas abaixo e descubra qual banda gótica mais combina com sua personalidade:</p>
     </div>
 
@@ -127,6 +127,16 @@
 
 </html>
 <script>
+    function carregarNomeUsuario(){
+        if(sessionStorage.NOME_USUARIO == null){
+            nomeUsuario.innerHTML = "usuário"
+        } else{
+            nomeUsuario.innerHTML = sessionStorage.NOME_USUARIO
+        }
+    }
+
+    window.onload = carregarNomeUsuario;
+    
     function verResultado() {
 
         var resultado = document.getElementById("div_resultado");
