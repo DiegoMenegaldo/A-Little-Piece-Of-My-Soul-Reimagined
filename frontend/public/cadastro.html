@@ -74,17 +74,8 @@
                     </div>
                     <div class="campo">
                         <span>Gênero Gótico que mais te interessou:</span>
-                        <select id="select_genero" class="select_genero">
-                            <option selected disabled value="">Selecione um Gênero</option>
-                            <option>Gothic Rock</option>
-                            <option>Post-Punk</option>
-                            <option>Darkwave</option>
-                            <option>Coldwave</option>
-                            <option>Industrial</option>
-                            <option>Deathrock</option>
-                            <option>EBM (Electronic Body Music)</option>
-                            <option>Gothic Metal / Love Metal</option>
-                        </select>
+                        <div id="container_generos" class="opcoes-radio">
+                        </div>
                     </div>
                     <div class="campo">
                         <span>Banda Gótica que mais te interessou:</span>
@@ -119,28 +110,58 @@
 </html>
 <script>
 
-    function listarBandas(){
+    window.onload = function () {
+        listarGeneros();
+        listarBandas();
+    }
+
+    function listarGeneros() {
+        fetch("http://localhost:8080/generos")
+            .then(resposta => resposta.json())
+            .then(generos => {
+                const containerGeneros = document.getElementById("container_generos");
+                containerGeneros.innerHTML = "";
+
+                generos.forEach(genero => {
+                    const label = document.createElement("label");
+
+                    const input = document.createElement("input");
+                    input.type = "radio";
+                    input.name = "genero";
+                    input.value = genero.idGenero;
+
+                    label.appendChild(input);
+                    label.appendChild(document.createTextNode(" " + genero.nome));
+
+                    containerGeneros.appendChild(label);
+                });
+            })
+            .catch(erro => console.error("Erro ao carregar gêneros:", erro));
+    }
+
+    function listarBandas() {
         fetch("http://localhost:8080/bandas")
             .then(resposta => resposta.json())
-            .then(bandas =>{
+            .then(bandas => {
                 var selectBandas = document.getElementById("select_bandas")
 
                 bandas.forEach(banda => {
                     var option = document.createElement("option")
                     option.value = banda.idBanda
                     option.textContent = banda.nome
-                    selectBandas.appendChild(option)  
+                    selectBandas.appendChild(option)
                 });
             })
     }
 
-    window.onload(listarBandas())
-
     function cadastrar() {
+        div_mensagemSucesso.innerHTML = "";
+
         var nomeVar = input_nome.value;
         var emailVar = input_email.value;
         var senhaVar = input_senha.value;
-        var generoVar = select_genero.value;
+        var generoSelecionado = document.querySelector('input[name="genero"]:checked');
+        var generoVar = generoSelecionado ? generoSelecionado.value : "";
         var bandaVar = select_bandas.value;
         var confirmacaoSenhaVar = input_senha_confirmacao.value;
         var nomeTamanho = nomeVar.length;
@@ -215,7 +236,7 @@
                 nome: nomeVar,
                 email: emailVar,
                 dtNascimento: dtNascimentoVar,
-                generoFavorito: generoVar,
+                fkGenero: generoVar,
                 fkBanda: bandaVar,
                 senha: senhaVar,
             }),

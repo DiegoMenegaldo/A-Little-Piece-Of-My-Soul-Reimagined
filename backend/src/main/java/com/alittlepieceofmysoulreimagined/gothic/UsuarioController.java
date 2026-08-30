@@ -26,8 +26,8 @@ public class UsuarioController {
         if(usuario.getSenha() == null || usuario.getSenha().isBlank()){
             return ResponseEntity.status(400).body("Senha inválida.");
         }
-        if(usuario.getGeneroFavorito() == null || usuario.getGeneroFavorito().isBlank()){
-            return ResponseEntity.status(400).body("Gênero gótico favorito inválido.");
+        if(usuario.getFkGenero() == null || usuario.getFkGenero() == 0){
+            return ResponseEntity.status(400).body("Gênero gótico inválid0.");
         }
         if(usuario.getFkBanda() == null || usuario.getFkBanda() == 0){
             return ResponseEntity.status(400).body("Banda gótica favorita inválida.");
@@ -40,16 +40,16 @@ public class UsuarioController {
         }
 
         String sql = """
-                INSERT INTO Cadastro (nomeCompleto, fkBanda, email, dtNascimento, generoFavorito, senha) VALUES 
+                INSERT INTO Cadastro (nomeCompleto, fkGenero, fkBanda, email, dtNascimento, senha) VALUES 
                 (?,?,?,?,?,?);""";
 
         jdbcTemplate.update(
             sql,
                 usuario.getNome(),
+                usuario.getFkGenero(),
                 usuario.getFkBanda(),
                 usuario.getEmail(),
                 usuario.getDtNascimento(),
-                usuario.getGeneroFavorito(),
                 usuario.getSenha()
         );
         return ResponseEntity.status(201).build();
@@ -58,12 +58,12 @@ public class UsuarioController {
     @PostMapping("/autenticar")
     public ResponseEntity<?> autenticarUsuario(@RequestBody Usuario usuario){
         String sql = """
-                SELECT idCadastro AS id, 
+                SELECT idCadastro AS id,
+                fkGenero, 
                 fkBanda, 
                 nomeCompleto AS nome,
                 email, 
-                dtNascimento, 
-                generoFavorito  
+                dtNascimento
                 FROM Cadastro 
                 WHERE email = ? AND senha = ?;
                 """;

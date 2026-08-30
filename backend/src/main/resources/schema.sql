@@ -3,15 +3,21 @@ CREATE TABLE Banda(
     nome VARCHAR(45) NOT NULL
 );
 
+CREATE TABLE Genero(
+    idGenero INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(45) NOT NULL
+);
+
 CREATE TABLE Cadastro(
-                         idCadastro INT PRIMARY KEY AUTO_INCREMENT,
-                         fkBanda INT,
-                         nomeCompleto VARCHAR(100) NOT NULL,
-                         email VARCHAR(100) UNIQUE NOT NULL,
-                         dtNascimento DATE NOT NULL,
-                         generoFavorito VARCHAR(45) NOT NULL,
-                         senha VARCHAR(100) NOT NULL,
-                         FOREIGN KEY (fkBanda) REFERENCES Banda(idBanda)
+    idCadastro INT PRIMARY KEY AUTO_INCREMENT,
+    fkBanda INT,
+    fkGenero INT,
+    nomeCompleto VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    dtNascimento DATE NOT NULL,
+    senha VARCHAR(100) NOT NULL,
+    FOREIGN KEY (fkBanda) REFERENCES Banda(idBanda),
+    FOREIGN KEY (fkGenero) REFERENCES Genero(idGenero)
 );
 
 CREATE TABLE Quiz(
@@ -51,3 +57,13 @@ INSERT INTO Banda (nome) VALUES
                              ('London After Midnight'),
                              ('She Wants Revenge'),
                              ('His Infernal Majesty (HIM)');
+
+INSERT INTO Genero (nome) VALUES
+                              ('Gothic Rock'),
+                              ('Post-Punk'),
+                              ('Darkwave'),
+                              ('Coldwave'),
+                              ('Industrial'),
+                              ('Deathrock'),
+                              ('EBM (Electronic Body Music)'),
+                              ('Gothic Metal / Love Metal');

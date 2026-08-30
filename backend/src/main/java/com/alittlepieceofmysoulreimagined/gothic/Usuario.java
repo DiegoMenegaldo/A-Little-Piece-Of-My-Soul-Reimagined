@@ -5,6 +5,7 @@ import java.time.LocalDate;
 public class Usuario {
     private Integer id;
     private Integer fkBanda;
+    private Integer fkGenero;
     private String nome;
     private String email;
     private String generoFavorito;
@@ -14,8 +15,9 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Integer fkBanda, String nome, String email, String generoFavorito, String senha, LocalDate dtNascimento) {
+    public Usuario(Integer fkBanda, Integer fkGenero, String nome, String email, String generoFavorito, String senha, LocalDate dtNascimento) {
         this.fkBanda = fkBanda;
+        this.fkGenero = fkGenero;
         this.nome = nome;
         this.email = email;
         this.generoFavorito = generoFavorito;
@@ -23,9 +25,10 @@ public class Usuario {
         this.dtNascimento = dtNascimento;
     }
 
-    public Usuario(Integer id, Integer fkBanda, String nome, String email, String generoFavorito, String senha, LocalDate dtNascimento) {
+    public Usuario(Integer id, Integer fkBanda, Integer fkGenero, String nome, String email, String generoFavorito, String senha, LocalDate dtNascimento) {
         this.id = id;
         this.fkBanda = fkBanda;
+        this.fkGenero = fkGenero;
         this.nome = nome;
         this.email = email;
         this.generoFavorito = generoFavorito;
@@ -47,6 +50,14 @@ public class Usuario {
 
     public void setFkBanda(Integer fkBanda) {
         this.fkBanda = fkBanda;
+    }
+
+    public Integer getFkGenero() {
+        return fkGenero;
+    }
+
+    public void setFkGenero(Integer fkGenero) {
+        this.fkGenero = fkGenero;
     }
 
     public String getNome() {
