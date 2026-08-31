@@ -339,7 +339,7 @@
             alert(`Essas informações não serão salvas no banco, faça login para salvá-las`)
             return;
         } else {
-            fetch("/quiz/inserirPerguntas", {
+            fetch("http://localhost:8080/quizzes/inserirPerguntas", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
