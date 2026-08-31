@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Little Piece Of My Soul - Login</title>
     <link rel="stylesheet" href="./style/style.css">
-    <script src="./js/sessao.js"></script>
     <link rel="icon" href="./assets/logo-sem-fundo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,7 +45,7 @@
                 <li>
                     <a href="dashboard.html">Dashboard</a>
                 </li>
-                <li>
+                <li id="btLogoff">
                     <a onclick="limparSessao()" style="cursor: pointer;">Logoff</a>
                 </li>
             </ul>
@@ -82,6 +81,17 @@
 </body>
 </html>
 <script>
+        function carregarNomeUsuario(){
+        if(sessionStorage.NOME_USUARIO == null){
+            nomeUsuario.innerHTML = "usuário"
+            btLogoff.innerHTML = ""
+        } else{
+            nomeUsuario.innerHTML = sessionStorage.NOME_USUARIO
+        }
+    }
+
+    window.onload = carregarNomeUsuario;
+    
     function entrar() {
         var emailVar = input_email.value;
         var senhaVar = input_senha.value;
