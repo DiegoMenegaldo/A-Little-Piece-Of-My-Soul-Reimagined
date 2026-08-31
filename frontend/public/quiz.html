@@ -46,7 +46,7 @@
                 <li>
                     <a href="dashboard.html">Dashboard</a>
                 </li>
-                <li>
+                <li id="btLogoff">
                     <a onclick="limparSessao()" style="cursor: pointer;">Logoff</a>
                 </li>
             </ul>
@@ -130,6 +130,7 @@
     function carregarNomeUsuario(){
         if(sessionStorage.NOME_USUARIO == null){
             nomeUsuario.innerHTML = "usuário"
+            btLogoff.innerHTML = ""
         } else{
             nomeUsuario.innerHTML = sessionStorage.NOME_USUARIO
         }
