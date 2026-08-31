@@ -7,6 +7,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Key;
 import java.sql.PreparedStatement;
 
 @CrossOrigin
@@ -49,5 +50,26 @@ public class QuizController {
         Integer idQuiz = keyHolder.getKeyAs(Integer.class);
         quiz.setIdQuiz(idQuiz);
         return ResponseEntity.status(201).body(quiz);
+    }
+
+    @PostMapping("/inserirResultados")
+    public ResponseEntity<ResultadosQuiz> inserirResultados(@RequestBody ResultadosQuiz resultadoQuiz){
+        if (resultadoQuiz == null ||
+                resultadoQuiz.getFkCadastro() == null || resultadoQuiz.getFkCadastro() <= 0 ||
+                resultadoQuiz.getFkQuiz() == null || resultadoQuiz.getFkQuiz() <= 0 ||
+                resultadoQuiz.getResultado() == null || resultadoQuiz.getResultado().isBlank()) {
+            return ResponseEntity.status(400).build();
+        }
+
+        String sql = "INSERT INTO ResultadosQuiz (fkCadastro, fkQuiz, resultado) VALUES (?,?,?);";
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection ->{
+            PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, resultadoQuiz.getFkCadastro());
+            ps.setInt(2, resultadoQuiz.getFkQuiz());
+            ps.setString(3, resultadoQuiz.getResultado());
+            return ps;
+        }, keyHolder);
+        return ResponseEntity.status(201).body(resultadoQuiz);
     }
 }

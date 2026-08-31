@@ -336,7 +336,7 @@
             }).then(res => res.json())
                 .then(json => {
                     const fkQuiz = json.idQuiz;
-                    fetch("/quiz/inserirResultado", {
+                    fetch("http://localhost:8080/quizzes/inserirResultados", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
