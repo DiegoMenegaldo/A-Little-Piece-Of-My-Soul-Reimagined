@@ -139,6 +139,10 @@ body {
     color: #7b1339;
 }
 
+.banner .container .reimagined {
+    color: #c4a1ff;
+}
+
 .banner .container p {
     font-weight: bolder;
     font-size: 20px;
