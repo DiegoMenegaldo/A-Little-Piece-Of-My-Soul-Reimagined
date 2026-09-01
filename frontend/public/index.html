@@ -11,7 +11,9 @@
     <link rel="icon" href="./assets/logo-sem-fundo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caudex:ital,wght@0,400;0,700;1,400;1,700&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet"> <!-- Fontes utilizadas -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caudex:ital,wght@0,400;0,700;1,400;1,700&family=Cinzel+Decorative:wght@400;700;900&display=swap"
+        rel="stylesheet"> <!-- Fontes utilizadas -->
 </head>
 
 <body>
@@ -42,9 +44,6 @@
                 <li>
                     <a href="quiz.html">Quiz</a>
                 </li>
-                <li>
-                    <a href="dashboard.html">Dashboard</a>
-                </li>
                 <li id="btLogoff">
                     <a onclick="limparSessao()" style="cursor: pointer;">Logoff</a>
                 </li>
@@ -69,23 +68,23 @@
     </div>
 
     <div class="hyperlinks">
-            <div class="boxes">
-                <div class="box">
-                    <h3>A Subcultura</h3>
-                    <p>Um passeio pela origem, estética e filosofia gótica</p>
-                    <a href="subcultura.html">Clique aqui para explorar</a>
-                </div>
-                <div class="box">
-                    <h3>Bandas</h3>
-                    <p>Um dos principais pilares da subcultura e foco do projeto</p>
-                    <a href="bandas.html">Clique aqui para ouvir</a>
-                </div>
-                <div class="box">
-                    <h3>Quiz</h3>
-                    <p>Descubra qual banda gótica representa sua essência.</p>
-                    <a href="quiz.html">Clique aqui para começar</a>
-                </div>
+        <div class="boxes">
+            <div class="box">
+                <h3>A Subcultura</h3>
+                <p>Um passeio pela origem, estética e filosofia gótica</p>
+                <a href="subcultura.html">Clique aqui para explorar</a>
             </div>
+            <div class="box">
+                <h3>Bandas</h3>
+                <p>Um dos principais pilares da subcultura e foco do projeto</p>
+                <a href="bandas.html">Clique aqui para ouvir</a>
+            </div>
+            <div class="box">
+                <h3>Quiz</h3>
+                <p>Descubra qual banda gótica representa sua essência.</p>
+                <a href="quiz.html">Clique aqui para começar</a>
+            </div>
+        </div>
     </div>
 
     <div class="footer">
@@ -95,17 +94,19 @@
 
 </html>
 <script>
-        function carregarNomeUsuario(){
-        if(sessionStorage.NOME_USUARIO == null){
-            nomeUsuario.innerHTML = "usuário"
+    function carregarNomeUsuario() {
+        if (sessionStorage.NOME_USUARIO == null) {
             btLogoff.innerHTML = ""
-        } else{
-            nomeUsuario.innerHTML = sessionStorage.NOME_USUARIO
         }
     }
 
     window.onload = carregarNomeUsuario;
-    
+
+    function limparSessao(){
+        sessionStorage.clear()
+        btLogoff.innerHTML = ""
+    }
+
     function quizGotico() {
         window.location.href = 'quiz.html';
     }

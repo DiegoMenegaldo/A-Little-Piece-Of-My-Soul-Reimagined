@@ -42,9 +42,6 @@
                 <li>
                     <a href="quiz.html">Quiz</a>
                 </li>
-                <li>
-                    <a href="dashboard.html">Dashboard</a>
-                </li>
                 <li id="btLogoff">
                     <a onclick="limparSessao()" style="cursor: pointer;">Logoff</a>
                 </li>
@@ -53,45 +50,48 @@
     </div>
 
     <div class="login">
-            <div class="container">
-                <div class="card-login">
-                    <div class="formulario">
-                        <h2>Fico feliz que tenha voltado 🍷</h2>
-                        <div class="campo">
-                            <span>Email</span>
-                            <input type="text" id="input_email">
-                        </div>
-                        <div class="campo">
-                            <span>Senha:</span>
-                            <input type="password" id="input_senha">
-                        </div>
-                        <button class="botao-login" onclick="entrar()">‿̩͙⊱༒︎༻♱Entrar♱༺༒︎⊰‿̩͙</button>
-                        <div class="possuiConta">
-                            <span>Não possui cadastro?</span>
-                            <a href="cadastro.html">Clique aqui para se cadastrar</a>
-                        </div>
+        <div class="container">
+            <div class="card-login">
+                <div class="formulario">
+                    <h2>Fico feliz que tenha voltado 🍷</h2>
+                    <div class="campo">
+                        <span>Email</span>
+                        <input type="text" id="input_email">
                     </div>
-                    <div id="mensagem_erro"></div>
+                    <div class="campo">
+                        <span>Senha:</span>
+                        <input type="password" id="input_senha">
+                    </div>
+                    <button class="botao-login" onclick="entrar()">‿̩͙⊱༒︎༻♱Entrar♱༺༒︎⊰‿̩͙</button>
+                    <div class="possuiConta">
+                        <span>Não possui cadastro?</span>
+                        <a href="cadastro.html">Clique aqui para se cadastrar</a>
+                    </div>
                 </div>
+                <div id="mensagem_erro"></div>
             </div>
         </div>
+    </div>
     <div class="footer">
         <div>A Little Piece of My Soul — criado por Diego Henrique de Novais Menegaldo 🦇🍷🖤</div>
     </div>
 </body>
+
 </html>
 <script>
-        function carregarNomeUsuario(){
-        if(sessionStorage.NOME_USUARIO == null){
-            nomeUsuario.innerHTML = "usuário"
+    function carregarNomeUsuario() {
+        if (sessionStorage.NOME_USUARIO == null) {
             btLogoff.innerHTML = ""
-        } else{
-            nomeUsuario.innerHTML = sessionStorage.NOME_USUARIO
         }
     }
 
+    function limparSessao() {
+        sessionStorage.clear()
+        btLogoff.innerHTML = ""
+    }
+
     window.onload = carregarNomeUsuario;
-    
+
     function entrar() {
         var emailVar = input_email.value;
         var senhaVar = input_senha.value;
@@ -125,7 +125,7 @@
                     sessionStorage.ID_USUARIO = json.id;
                     setTimeout(function () {
                         window.location.href = "quiz.html";
-                    }, 1000); 
+                    }, 1000);
                 });
             } else {
                 alert(`Login inválido, tente novamente`)

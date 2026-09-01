@@ -42,9 +42,6 @@
                 <li>
                     <a href="quiz.html">Quiz</a>
                 </li>
-                <li>
-                    <a href="dashboard.html">Dashboard</a>
-                </li>
                 <li id="btLogoff">
                     <a onclick="limparSessao()" style="cursor: pointer;">Logoff</a>
                 </li>
@@ -126,17 +123,19 @@
 
 </html>
 <script>
-    function carregarNomeUsuario(){
-        if(sessionStorage.NOME_USUARIO == null){
-            nomeUsuario.innerHTML = "usuário"
+    function carregarNomeUsuario() {
+        if (sessionStorage.NOME_USUARIO == null) {
             btLogoff.innerHTML = ""
-        } else{
-            nomeUsuario.innerHTML = sessionStorage.NOME_USUARIO
         }
     }
 
+    function limparSessao() {
+        sessionStorage.clear()
+        btLogoff.innerHTML = ""
+    }
+
     window.onload = carregarNomeUsuario;
-    
+
     function verResultado() {
 
         var resultado = document.getElementById("div_resultado");
