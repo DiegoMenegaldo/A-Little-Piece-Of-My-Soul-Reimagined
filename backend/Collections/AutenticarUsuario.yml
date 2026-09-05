@@ -1,20 +1,16 @@
 info:
-  name: CriarUsuario
+  name: AutenticarUsuario
   type: http
-  seq: 1
+  seq: 5
 
 http:
   method: POST
-  url: localhost:8080/usuarios
+  url: localhost:8080/usuarios/autenticar
   body:
     type: json
     data: |-
       {
-        "nome": "Sean Brennan",
-        "fkBanda": "11",
         "email": "sean.brennan@lam.com",
-        "dtNascimento": "1967-02-20",
-        "fkGenero": "3",
         "senha": "SacrificeMyselToYou1991!"
       }
   auth: inherit

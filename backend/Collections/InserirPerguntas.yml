@@ -1,0 +1,28 @@
+info:
+  name: InserirPerguntas
+  type: http
+  seq: 6
+
+http:
+  method: POST
+  url: localhost:8080/quizzes/inserirPerguntas
+  body:
+    type: json
+    data: |-
+      {
+        "p1":"D",
+        "p2":"C",
+        "p3":"B",
+        "p4":"A",
+        "p5":"A",
+        "p6":"B",
+        "p7":"C"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

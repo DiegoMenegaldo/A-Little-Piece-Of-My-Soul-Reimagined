@@ -1,0 +1,24 @@
+info:
+  name: InserirResultados
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: localhost:8080/quizzes/inserirResultados
+  body:
+    type: json
+    data: |-
+      {
+      "fkCadastro": "1",
+        "fkQuiz": "1",
+        "resultado": "Lebanon Hanover"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
