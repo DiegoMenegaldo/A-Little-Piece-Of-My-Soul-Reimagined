@@ -1074,3 +1074,26 @@ body {
         width: 70%; 
     }
 }
+
+.opcoes-radio {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 15px 25px; 
+    width: 100%;
+    margin-top: 10px;
+}
+
+.opcoes-radio label {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: normal; 
+    cursor: pointer;
+}
+
+.opcoes-radio input[type="radio"] {
+    width: auto; 
+    height: auto;
+    margin: 0 8px 0 0; 
+    cursor: pointer;
+}
