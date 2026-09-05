@@ -260,7 +260,9 @@ body {
 
 .card-cadastro {
     background-color: #0d0d0d;
-    height: 90%;
+    min-height: 90%;
+    height: auto;
+    padding: 2rem 0; 
     width: 40%;
     display: flex;
     flex-direction: column;
@@ -364,6 +366,14 @@ body {
     color: #eaeaea;
 }
 
+#div_mensagemSucesso, #mensagem_erro {
+    text-align: center;
+    width: 80%;
+    margin: 15px 0;
+    color: #c4a1ff; 
+    font-weight: bold;
+}
+
 /* FIM DO CADASTRO */
 
 /* TELA DE LOGIN */
@@ -385,7 +395,9 @@ body {
 
 .card-login {
     background-color: #0d0d0d;
-    height: 50%;
+    min-height: 50%;
+    height: auto;
+    padding: 2rem 0; 
     width: 40%;
     display: flex;
     flex-direction: column;
@@ -1027,4 +1039,38 @@ body {
 #generosCadastro {
     background-color: #252525;
     border-radius: 15px;
+}
+
+@media (max-width: 1024px) {
+    .card-cadastro,
+    .card-login {
+        width: 70%;
+    }
+}
+
+@media (max-width: 768px) {
+    .card-cadastro,
+    .card-login {
+        width: 90%;
+        padding: 1.5rem 0;
+    }
+
+    .card-cadastro h2,
+    .card-login h2 {
+        font-size: 28px; 
+        text-align: center;
+    }
+
+    .campo {
+        width: 90%; 
+    }
+
+    .campo span {
+        font-size: 16px;
+    }
+
+    .cadastro button,
+    .login button {
+        width: 70%; 
+    }
 }
