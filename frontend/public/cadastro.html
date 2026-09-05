@@ -59,15 +59,15 @@
                 <div class="formulario">
                     <div class="campo">
                         <span>Nome Completo:</span>
-                        <input type="text" id="input_nome">
+                        <input type="text" id="input_nome" value="Sean Brennan">
                     </div>
                     <div class="campo">
                         <span>Email:</span>
-                        <input type="text" id="input_email">
+                        <input type="text" id="input_email" value="sean.brennan@lam.com">
                     </div>
                     <div class="campo">
                         <span>Data de Nascimento:</span>
-                        <input type="date" id="input_dtNascimento">
+                        <input type="date" id="input_dtNascimento" value="1968-10-31">
                     </div>
                     <div class="campo">
                         <span>Gênero Gótico que mais te interessou:</span>
@@ -77,16 +77,16 @@
                     <div class="campo">
                         <span>Banda Gótica que mais te interessou:</span>
                         <select id="select_bandas" class="select_bandas">
-                            <option selected disabled value="">Selecione uma Banda</option>
+                            <option disabled value="">Selecione uma Banda</option>
                         </select>
                     </div>
                     <div class="campo">
                         <span>Senha:</span>
-                        <input type="password" id="input_senha">
+                        <input type="password" id="input_senha" value="Spider&TheWeb1991!">
                     </div>
                     <div class="campo">
                         <span>Confirme sua senha:</span>
-                        <input type="password" id="input_senha_confirmacao">
+                        <input type="password" id="input_senha_confirmacao" value="Spider&TheWeb1991!">
                     </div>
                     <button class="botao-cadastro" onclick="cadastrar()">‿̩͙⊱༒︎༻♱Cadastrar♱༺༒︎⊰‿̩͙</button>
                     <div id="div_mensagemSucesso"></div>
@@ -139,6 +139,10 @@
                     input.name = "genero";
                     input.value = genero.idGenero;
 
+                    if (genero.idGenero == 3) {
+                        input.checked = true;
+                    }
+
                     label.appendChild(input);
                     label.appendChild(document.createTextNode(" " + genero.nome));
 
@@ -158,6 +162,11 @@
                     var option = document.createElement("option")
                     option.value = banda.idBanda
                     option.textContent = banda.nome
+
+                    if (banda.idBanda == 11) {
+                        option.selected = true;
+                    }
+
                     selectBandas.appendChild(option)
                 });
             })
